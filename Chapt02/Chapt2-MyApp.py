@@ -8,7 +8,7 @@ w_sensor = Button(5)
 
 def speed():
     global w_count
-	w_count += 1
+    w_count += 1
 
 def direction():
     pass

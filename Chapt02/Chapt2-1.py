@@ -1,3 +1,5 @@
+#! /usr/bin/python3.10
+
 from time import sleep
 from threading import Thread
 

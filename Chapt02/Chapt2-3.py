@@ -1,3 +1,5 @@
+#! /usr/bin/python3.10
+
 from concurrent.futures import thread
 from time import sleep
 from threading import Thread

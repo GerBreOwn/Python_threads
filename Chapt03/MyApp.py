@@ -2,6 +2,7 @@
 
 from time import sleep
 from threading import Thread
+import threading
 
 def wind_speed():
     '''This function will calculate the current wind speed.'''
@@ -40,3 +41,16 @@ if __name__ == '__main__':
     print(thread_direction.name)
     print(thread_speed.name)  
     print(thread_rainfall.name)
+
+    """ thread_speed.start()
+    thread_direction.start()
+    thread_rainfall.start()
+    thread_bme280.start()
+    thread_battery.start() """
+    for thread in threads:
+        thread.start()
+    running_threads = threading.enumerate()
+    print(f'Active Threads: {len(running_threads)}')
+    # report each in turn
+    for thread in running_threads:
+        print(thread)

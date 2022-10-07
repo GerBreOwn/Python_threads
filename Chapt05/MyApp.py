@@ -4,6 +4,17 @@ from time import sleep
 from threading import Thread
 import threading
 
+w_count = 0
+w_gust = 0
+w_speed = 0
+w_angle = 0
+w_dir = None
+r_count = 0
+rainfall = 0
+humidity = 0
+pressure = 0
+temperature = 0
+
 def wind_spin():
     '''This function will count the number of times the reed switch is closed.'''
     print('wind_spin')
@@ -21,6 +32,7 @@ def wind_direction():
 
 def tipped():
     '''This will count the number of times the reed switch is closed when the buckets are tipped.'''
+    print('tipped')
     pass
 
 def rainfall():
@@ -44,6 +56,7 @@ def database():
     pass
 
 if __name__ == '__main__':
+    threads = []
     thread_spin = Thread(target=wind_spin, name='wind_spin')
     thread_speed = Thread(target=wind_speed, name='wind_speed')
     thread_direction = Thread(target=wind_direction, name='wind_direction')
@@ -52,17 +65,8 @@ if __name__ == '__main__':
     thread_bme280 = Thread(target=bme280, name='bme280')
     thread_battery = Thread(target=battery, name='battery')
 
-    print(thread_battery.name)
-    print(thread_bme280.name)
-    print(thread_direction.name)
-    print(thread_speed.name)  
-    print(thread_rainfall.name)
+    threads = [thread_spin, thread_speed, thread_direction, thread_tipped,thread_rainfall, thread_bme280,  thread_battery]
 
-    """ thread_speed.start()
-    thread_direction.start()
-    thread_rainfall.start()
-    thread_bme280.start()
-    thread_battery.start() """
     for thread in threads:
         thread.start()
     running_threads = threading.enumerate()
